@@ -76,7 +76,7 @@ def get_movies_by_country(countries):
         # TODO: Projection
         # Find movies matching the "countries" list, but only return the title
         # and _id.
-        return list(db.movies.find())
+        return list(db.movies.find({'countries': {'$in': countries}}, {'title': 1}))
 
     except Exception as e:
         return e
@@ -271,7 +271,7 @@ def get_movie(id):
 
         # TODO: Error Handling
         # If an invalid ID is passed to `get_movie`, it should return None.
-        except (StopIteration) as _:
+    except (StopIteration) as _:
 
         """
         Ticket: Error Handling
